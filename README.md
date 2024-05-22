@@ -77,3 +77,7 @@
    # syntax is 
        - const About = lazy(()=> import("./components/About"));
        - element:<Suspense fallback={<Shimmer />}><Grocery /></Suspense> 
+
+
+# Higher Order component
+  - HOC is a function which takes a component as an argument or input and returns a new component.
