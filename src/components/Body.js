@@ -1,4 +1,4 @@
-import ResturantCard from "./ResturantCard";
+import ResturantCard, { ResturantCardWithPromoted } from "./ResturantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -8,6 +8,8 @@ const Body = () => {
     const [list, setList] = useState([]);
     const [search, setsearch] = useState("");
     const [filteredRes, setfilteredRes] = useState([]);
+
+    const Withlabel = ResturantCardWithPromoted(ResturantCard);
 
     //filter function
     function Filter() {
@@ -19,38 +21,41 @@ const Body = () => {
 
     useEffect(() => {
         effect();
-    },[]);
+    }, []);
 
 
     const effect = async () => {
-        const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=16.9890648&lng=82.2474648");
+        const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=17.406498&lng=78.47724389999999");
         const json = await data.json();
         setList(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
         setfilteredRes(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
     }
 
-     //online connectivity
-     const onlineStatus = useOnlineStatus();
- 
-     if(onlineStatus === false){
-        return <h1>Looks like your offline please check your internet and try again!!</h1>;
-     }
+    //online connectivity
+    const onlineStatus = useOnlineStatus();
 
-     
+    if (onlineStatus === false) {
+        return <h1>Looks like your offline please check your internet and try again!!</h1>;
+    }
+
+
     const handleSearch = (e) => {
         const searchtext = e.target.value;
         setsearch(searchtext);
-        if(searchtext==""){
+        if (searchtext == "") {
             setfilteredRes(list);
-        }else{
+        } else {
             const filterdata = list.filter(res =>
                 res.info.name.toLowerCase().includes(search.toLowerCase())
             );
             setfilteredRes(filterdata);
         }
     }
-
-    return list.length == 0 ? <Shimmer /> : (
+    
+    if(list.length===0){
+        return <Shimmer />
+    }
+    return  (
         <div className="body">
             <div className="mb-4 mt-4 flex justify-center gap-4">
                 <input className="p-1 h-10 w-3/12 border-2 border-black rounded-md" type="text" placeholder="Search for products..." value={search} onChange={handleSearch} />
@@ -59,7 +64,7 @@ const Body = () => {
             </div>
             <div className="flex flex-wrap justify-center gap-3">
                 {filteredRes.map((res) => (
-                    <ResturantCard key={res.info.id} resData={res} />
+                    res.info.promoted ? <Withlabel key={res.info.id} resData={res} /> : <ResturantCard key={res.info.id} resData={res} />
                 ))}
             </div>
         </div>

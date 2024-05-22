@@ -8,7 +8,7 @@ const ResturantCard = (props) => {
 
     return (
 
-        <Link to={"/resturants/" + resData.info.id} className="h-full"><div className="flex flex-col p-2  ease-in hover:scale-95">
+        <Link to={"/resturants/" + resData.info.id} className="h-full"><div className="flex flex-col p-2  ease-in hover:scale-95 ">
             <div className="w-72 p-2 m-5 ">
                 <img className="h-44 w-full rounded-3xl" src={CDN_LINK + cloudinaryImageId} />
                 <div className="p-3 flex flex-col gap-px">
@@ -26,4 +26,19 @@ const ResturantCard = (props) => {
         </Link>
     )
 }
+
+//Higher order component
+export const ResturantCardWithPromoted = (ResturantCard)=>{
+  return (props)=>{
+    return (
+        <div className="relative bottom-7">
+            <div className="relative top-14 left-7">
+            <label className=" bg-black text-white p-1 left-10 rounded-tl-lg">Pomoted</label>
+            </div>
+            <ResturantCard {...props}/>
+        </div>
+    )
+  }
+}
+
 export default ResturantCard;
