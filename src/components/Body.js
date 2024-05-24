@@ -1,7 +1,8 @@
 import ResturantCard, { ResturantCardWithPromoted } from "./ResturantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/UserContext";
 
 //body component
 const Body = () => {
@@ -38,6 +39,7 @@ const Body = () => {
         return <h1>Looks like your offline please check your internet and try again!!</h1>;
     }
 
+    const {userInfo , setName} = useContext(userContext);
 
     const handleSearch = (e) => {
         const searchtext = e.target.value;
@@ -61,6 +63,7 @@ const Body = () => {
                 <input className="p-1 h-10 w-3/12 border-2 border-black rounded-md" type="text" placeholder="Search for products..." value={search} onChange={handleSearch} />
                 <button className="bg-blue-800 h-9 w-20 rounded-md text-white " ><i className="fa-solid fa-magnifying-glass fa-xl"></i></button>
                 <button className="bg-blue-800 h-9 w-44 text-white rounded-md" onClick={Filter}>Top Rated Restaurants</button>
+               {/* UserName : <input className="border border-black p-1" value={userInfo} onChange={(e)=>setName(e.target.value)}/> */}
             </div>
             <div className="flex flex-wrap justify-center gap-3">
                 {filteredRes.map((res) => (

@@ -1,5 +1,13 @@
 import { CDN_LINK } from "../utils/constants"
+import { addItem } from "../utils/cartSlice"
+import { useDispatch } from "react-redux"
 const ItemData = ({ items }) => {
+    const dispatch = useDispatch();
+
+    const addItems = (data) => {
+        dispatch(addItem(data));
+    }
+
     return (
         <div>
             {items.map((data) => (
@@ -13,14 +21,14 @@ const ItemData = ({ items }) => {
                     <div className="1/3 my-2">
                         {data?.card?.info?.imageId ? (
                             <>
-                                <button className="h-10 w-32 rounded-md border-1 font-medium bg-white shadow-xl text-[#1ba672] text-xl absolute mx-4 my-24">
+                                <button className="h-10 w-32 rounded-md border-1 font-medium bg-white shadow-xl text-[#1ba672] text-xl absolute mx-4 my-24" onClick={() => addItems(data)}>
                                     Add
                                 </button>
                                 <img src={CDN_LINK + data?.card?.info?.imageId} className="w-40 h-32 rounded-2xl" />
                             </>
                         ) : (
                             <div className="my-9 mx-4">
-                                <button className="h-10 w-32 rounded-md border-1 font-medium bg-white shadow-xl text-[#1ba672] text-xl my-auto">
+                                <button className="h-10 w-32 rounded-md border-1 font-medium bg-white shadow-xl text-[#1ba672] text-xl my-auto" onClick={() => addItems(data)}>
                                     Add
                                 </button>
                             </div>

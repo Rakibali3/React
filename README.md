@@ -81,3 +81,20 @@
 
 # Higher Order component
   - HOC is a function which takes a component as an argument or input and returns a new component.
+
+
+# Context
+ - in React when we want to share data between components we use props this is also know as props drilling 
+ - but the problem is if we want to share data between root component to leaf component we cant directly share data between them we share data using intermediate components 
+ - to overcome this problem we use Context 
+
+
+# Redux Toolkit
+ - Install @reduxjs/toolkit and react-redux
+ - Build our store
+ - Connect our store to our app
+ - Create a slice
+ - dispach action
+ - Read Data using Selectors
+ 
+ 

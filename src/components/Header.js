@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LOGO_LINK } from "../utils/constants"
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 //header component
 const Header = () => {
     const [btnLogin, setbtnLogin] = useState("Login");
+    const { userInfo } = useContext(userContext);
+
+    const cartItems = useSelector((state)=>state.cart.items);
 
     const onlineStatus = useOnlineStatus();
     return (
@@ -20,10 +25,12 @@ const Header = () => {
                     <li className="hover:underline"><Link to="/about">About Us</Link></li>
                     <li className="hover:underline"><Link to="/about">Contact Us</Link></li>
                     <li className="hover:underline"><Link to="/grocery">Grocery</Link></li>
-                    <li><i className="fa-solid fa-cart-shopping fa-lg"></i></li>
+                    <li> <Link to="/cart"><i className="fa-solid fa-cart-shopping fa-lg"></i> ({cartItems.length}-Items)</Link></li>
+
                     <li className="hover:underline"><a href="#" onClick={() => {
                         btnLogin == "Login" ? setbtnLogin("Logout") : setbtnLogin("Login")
                     }}>{btnLogin}</a></li>
+                    {/* <li>{userInfo}</li> */}
                 </ul>
             </div>
         </div>
