@@ -78,10 +78,8 @@
        - const About = lazy(()=> import("./components/About"));
        - element:<Suspense fallback={<Shimmer />}><Grocery /></Suspense> 
 
-
 # Higher Order component
   - HOC is a function which takes a component as an argument or input and returns a new component.
-
 
 # Context
  - in React when we want to share data between components we use props this is also know as props drilling 
@@ -97,4 +95,14 @@
  - dispach action
  - Read Data using Selectors
  
- 
+ # Types of Testing (Developers)
+  - Unit Testing
+  - Integration Testing
+  - End to End Testing (e2e Testing)
+
+ # Testing Configuration
+  - install React Testing Libray
+  - install jest
+  - To use jest with Babel, install required dependencies:
+  - configue Babel by creating babel.config.js file 
+  - To disable default Babel transpilation in Parcel, override the default Parcel config for JavaScript to exclude for that we create a file called .parcelrc

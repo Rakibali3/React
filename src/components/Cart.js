@@ -7,8 +7,8 @@ const Cart = () => {
 
     const dispatch = useDispatch();
 
-    const handleCart = ()=>{
-            dispatch(clearCart());
+    const handleCart = () => {
+        dispatch(clearCart());
     }
 
     return (
@@ -16,9 +16,10 @@ const Cart = () => {
             <div className="w-6/12 m-auto">
                 <h1 className="text-center font-bold text-2xl">Cart</h1>
                 <div className="flex justify-center">
-                <button className="bg-black text-white p-1 m-2 rounded-md w-24 " onClick={handleCart}>Clear Cart</button>
+                    <button className="bg-black text-white p-1 m-2 rounded-md w-24 " onClick={handleCart}>Clear Cart</button>
                 </div>
-            <ItemData items={cartItems}/>
+                <ItemData items={cartItems} />
+                <button>Delete</button>
             </div>
         </div>
     );
