@@ -19,7 +19,6 @@ const Cart = () => {
                     <button className="bg-black text-white p-1 m-2 rounded-md w-24 " onClick={handleCart}>Clear Cart</button>
                 </div>
                 <ItemData items={cartItems} />
-                <button>Delete</button>
             </div>
         </div>
     );

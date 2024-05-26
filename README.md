@@ -22,12 +22,12 @@
 
 1. Default Import/Export
    Syntax   -   export default component name / variable name  
-                eg - export default Header
+            -  eg - export default Header
             -   import Header from"path"
 
 2. Named Import/Export 
   Syntax   -   export default component name / variable name
-               eg - export ComponentName = ()=>{}
+           -   eg - export ComponentName = ()=>{}
            -   import {Header} from "path"
 
 
@@ -43,7 +43,7 @@
 
 # UseState 
 
-  1. usestate is an local variable which has sper powers like it can remder the component when ever get updated
+  1. usestate is an local variable which has super powers like it can render the component when ever get updated
   - the proper definition of useState is - whenever useState gets updated it triggers reconsiliation cycle (which means it renders the component).
    # syntax const[state var name,function]=useState("default value);
    - the first argument is a state variabe name
@@ -64,7 +64,7 @@
   1. CLient Side Routing
       - this client side routing we use it in react it wll just interchange the components instead of reloading the entire page and it will also does not make any network calls.
   2. Server side Routing
-      - here the server will make a network cal to render that age so it will reloads the entire page once again.
+      - here the server will make a network call to render that page so it will reloads the entire page once again.
       
 # if we want to perform following things 
    1. chunking
@@ -73,7 +73,7 @@
    4. Lazy Loading
    5. Code Splitting
 
-   - we use a component called <Lazy></Lazy> which is offerred by react but when we use this we get a error bcoz as react is fast it tries to load the page faster which is not preseent so we need to use something called "Suspense" with fallback inside this fall back we give something to render before react render that lazy component 
+   - we use a component called "<Lazy></Lazy>" which is offerred by react but when we use this we get a error bcoz as react is fast it tries to load the page faster which is not preseent so we need to use something called "Suspense" with fallback inside this fall back we give something to render before react render that lazy component 
    # syntax is 
        - const About = lazy(()=> import("./components/About"));
        - element:<Suspense fallback={<Shimmer />}><Grocery /></Suspense> 
@@ -106,3 +106,18 @@
   - To use jest with Babel, install required dependencies:
   - configue Babel by creating babel.config.js file 
   - To disable default Babel transpilation in Parcel, override the default Parcel config for JavaScript to exclude for that we create a file called .parcelrc
+  - configure jest (npx jest --init)
+  - install jsdom (npm install --save-dev jest-environment-jsdom)
+  - install @babel/preset-react (to enable jsx in our testing)
+  - include @babel/preset-react in babel config file
+  - install @testing-library/jest-dom (f we want to use some functions called toBeInTheDocument() or anyother functions we need to install this library)
+
+# in jest
+  - When testing, code that causes React state updates or Fetching an API  should be wrapped into act(...):
+  - act is a function that tells Jest to wait for the asynchronous code to finish before continuing with the test.
+  - and in jest we have some functions called 
+     1. beforeAll(()=>{});
+     2. beforeEach(()=>{});
+     3. afterAll(()=>{});
+     4. afterEach(()=>{});
+     - we can use these functions to run some code before or after each test case , or before or after all the tests cases.
